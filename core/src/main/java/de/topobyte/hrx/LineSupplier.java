@@ -19,7 +19,7 @@ package de.topobyte.hrx;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-public class LineSupplier
+class LineSupplier
 {
 
 	private String buffer = null;
