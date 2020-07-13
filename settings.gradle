@@ -1,0 +1,3 @@
+include 'core', 'cli'
+project(':core').name = 'hrx'
+project(':cli').name = 'hrx-cli'
