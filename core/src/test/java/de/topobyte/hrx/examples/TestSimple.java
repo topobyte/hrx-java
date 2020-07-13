@@ -18,18 +18,41 @@ package de.topobyte.hrx.examples;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 import de.topobyte.hrx.HrxException;
 import de.topobyte.hrx.HrxFile;
+import de.topobyte.hrx.HrxFiles;
 import de.topobyte.hrx.HrxReader;
 import de.topobyte.util.Resources;
+import de.topobyte.util.TestUtil;
 
 public class TestSimple
 {
+
+	private List<HrxFile> expected = new ArrayList<>();
+	{
+		expected.add(HrxFiles.file("input.scss", TestUtil.lines( //
+				"ul {", //
+				"  margin-left: 1em;", //
+				"  li {", //
+				"    list-style-type: none;", //
+				"  }", //
+				"}", //
+				"" //
+		)));
+		expected.add(HrxFiles.file("output.css", TestUtil.lines( //
+				"ul {", //
+				"  margin-left: 1em;", //
+				"}", //
+				"ul li {", //
+				"  list-style-type: none;", //
+				"}" //
+		)));
+	}
 
 	@Test
 	public void test() throws IOException, HrxException
@@ -37,12 +60,7 @@ public class TestSimple
 		try (Reader reader = Resources.asReader("examples/simple.hrx")) {
 			HrxReader hrxReader = new HrxReader();
 			List<HrxFile> files = hrxReader.read(reader);
-			Assert.assertEquals(2, files.size());
-			for (HrxFile file : files) {
-				System.out.println(file.getType());
-				System.out.println(file.getPath());
-				System.out.println(file.getContent());
-			}
+			TestUtil.assertEquals(expected, files);
 		}
 	}
 

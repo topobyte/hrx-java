@@ -30,28 +30,22 @@ import de.topobyte.hrx.HrxReader;
 import de.topobyte.util.Resources;
 import de.topobyte.util.TestUtil;
 
-public class TestComments
+public class TestNoTrailingNewlines
 {
 
 	private List<HrxFile> expected = new ArrayList<>();
 	{
-		expected.add(HrxFiles.comment(TestUtil.lines("This is a comment.")));
-		expected.add(HrxFiles.file("file1", TestUtil.lines( //
-				"This is the contents of the file.", //
-				"" //
-		)));
-		expected.add(
-				HrxFiles.comment(TestUtil.lines("This is another comment.")));
-		expected.add(HrxFiles.file("file2", TestUtil.lines( //
-				"This is the contents of another file.", //
-				"" //
-		)));
+		expected.add(HrxFiles.file("file1",
+				TestUtil.lines("This file doesn't have a trailing newline.")));
+		expected.add(HrxFiles.file("file2",
+				TestUtil.lines("Neither does this one.")));
 	}
 
 	@Test
 	public void test() throws IOException, HrxException
 	{
-		try (Reader reader = Resources.asReader("examples/comments.hrx")) {
+		try (Reader reader = Resources
+				.asReader("examples/no-trailing-newlines.hrx")) {
 			HrxReader hrxReader = new HrxReader();
 			List<HrxFile> files = hrxReader.read(reader);
 			TestUtil.assertEquals(expected, files);
