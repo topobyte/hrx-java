@@ -1,3 +1,17 @@
+buildscript {
+    repositories {
+        maven { url 'http://mvn.topobyte.de' }
+    }
+    dependencies {
+        classpath 'de.topobyte:gradle-launch-and-install-plugin:0.0.3'
+    }
+}
+
+apply plugin: 'application'
+apply plugin: 'de.topobyte.launch-and-install-gradle-plugin'
+
+startScripts.enabled = false
+
 dependencies {
     compile project(':hrx')
 }
@@ -14,4 +28,10 @@ task copyDeps(type: Copy) {
 
 task createRuntime(dependsOn: [copyJars, copyDeps]) {
     description 'Setup the execution environment for the main scripts'
+}
+
+launchAndInstall {
+    installationPath = 'topobyte/hrx'
+    makeselfLabel = 'hrx'
+    createScript(project, 'de.topobyte.hrx.executables.RunHrxExtract', 'hrx-extract')
 }
