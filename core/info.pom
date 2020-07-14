@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project>
-  <name>Project</name>
-  <description>This project does this and that.</description>
-  <url>https://github.com/topobyte/project</url>
+  <name>hrx</name>
+  <description>Library for reading and writing Human Readable Archive (hrx) files.</description>
+  <url>https://github.com/topobyte/hrx-java</url>
 </project>
