@@ -61,7 +61,7 @@ public class TestNested
 				)));
 		expected1.add(HrxFiles.file("nested-file2.hrx", TestUtil.lines(
 				"You can tell it's not part of the outer file because the boundaries are longer.", //
-				"" // TODO: should this be removed???
+				"" //
 		)));
 	}
 

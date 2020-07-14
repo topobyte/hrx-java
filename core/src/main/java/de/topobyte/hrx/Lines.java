@@ -39,11 +39,10 @@ public class Lines
 			return "";
 		}
 		StringBuffer buffer = new StringBuffer();
-		buffer.append(lines.get(0));
 
-		for (int i = 1; i < lines.size(); i++) {
-			buffer.append("\n");
+		for (int i = 0; i < lines.size(); i++) {
 			buffer.append(lines.get(i));
+			buffer.append("\n");
 		}
 		return buffer.toString();
 	}
