@@ -18,7 +18,6 @@ package de.topobyte.hrx.examples;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,64 +35,19 @@ public class TestInlineBoundary
 
 	private List<HrxFile> expected = new ArrayList<>();
 	{
-		expected.add(HrxFiles.file("file1.hrx", TestUtil.lines(
-				"<=====> nested-file1.hrx", //
-				"This is a HRX file nested within a HRX file.", //
-				"", //
-				"<=====> nested-file2.hrx", //
-				"You can tell it's not part of the outer file because the boundaries are longer.", //
-				"" //
-		)));
-		expected.add(HrxFiles.file("file2.hrx", TestUtil.lines(
-				"<=> nested-file1.hrx", //
-				"Inner files can also contain shorter boundaries...", //
-				"", //
-				"<=> nested-file2.hrx", //
-				"...as long as they don't contain the outer file's boundary." //
-		)));
-	}
-
-	private List<HrxFile> expected1 = new ArrayList<>();
-	{
-		expected1.add(HrxFiles.file("nested-file1.hrx",
-				TestUtil.lines("This is a HRX file nested within a HRX file.", //
-						"" //
-				)));
-		expected1.add(HrxFiles.file("nested-file2.hrx", TestUtil.lines(
-				"You can tell it's not part of the outer file because the boundaries are longer.", //
-				"" // TODO: should this be removed???
-		)));
-	}
-
-	private List<HrxFile> expected2 = new ArrayList<>();
-	{
-		expected2.add(HrxFiles.file("nested-file1.hrx",
-				TestUtil.lines(
-						"Inner files can also contain shorter boundaries...", //
-						"" //
-				)));
-		expected2.add(HrxFiles.file("nested-file2.hrx", TestUtil.lines(
-				"...as long as they don't contain the outer file's boundary." //
+		expected.add(HrxFiles.file("file", TestUtil.lines(
+				"This <===> doesn't count as a boundary because it's not on its own line." //
 		)));
 	}
 
 	@Test
 	public void test() throws IOException, HrxException
 	{
-		try (Reader reader = Resources.asReader("examples/nested.hrx")) {
+		try (Reader reader = Resources
+				.asReader("examples/inline-boundary.hrx")) {
 			HrxReader hrxReader = new HrxReader();
 			List<HrxFile> files = hrxReader.read(reader);
 			TestUtil.assertEquals(expected, files);
-
-			HrxFile file1 = files.get(0);
-			List<HrxFile> nested1 = hrxReader
-					.read(new StringReader(file1.getContent()));
-			TestUtil.assertEquals(expected1, nested1);
-
-			HrxFile file2 = files.get(1);
-			List<HrxFile> nested2 = hrxReader
-					.read(new StringReader(file2.getContent()));
-			TestUtil.assertEquals(expected2, nested2);
 		}
 	}
 
