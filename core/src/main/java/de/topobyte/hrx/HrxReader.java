@@ -30,9 +30,14 @@ public class HrxReader
 
 	public List<HrxFile> read(Reader reader) throws IOException, HrxException
 	{
-		List<HrxFile> results = new ArrayList<>();
-
 		BufferedReader br = new BufferedReader(reader);
+		return read(br);
+	}
+
+	public List<HrxFile> read(BufferedReader br)
+			throws IOException, HrxException
+	{
+		List<HrxFile> results = new ArrayList<>();
 		String line = br.readLine();
 		boundaryLen = readFirstBoundary(line);
 		boundary = boundary();

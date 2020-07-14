@@ -1,0 +1,7 @@
+#!/bin/bash
+
+DIR=$(dirname $0)
+CMD="$DIR/hrx.sh"
+CLASS="de.topobyte.hrx.executables.RunHrxExtract"
+
+exec "$CMD" "$CLASS" "$@"
