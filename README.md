@@ -35,6 +35,15 @@ directory:
 
     hrx-extract <input hrx archive> <output directory>
 
+# Notes
+
+* We currently do not check for incorrectness of archive content, i.e.
+    * mulitple consequtive comments
+    * duplicate filenames
+    * invalid filenames
+* We don't have library classes or tools for packaging hrx files from a
+  directory tree
+
 # License
 
 This library is released under the terms of the Apache License.
