@@ -3,4 +3,7 @@
   <name>hrx</name>
   <description>Library for reading and writing Human Readable Archive (hrx) files.</description>
   <url>https://github.com/topobyte/hrx-java</url>
+  <licenseName>Apache License, Version 2</licenseName>
+  <licenseUrl>https://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+  <licenseDistribution>repo</licenseDistribution>
 </project>

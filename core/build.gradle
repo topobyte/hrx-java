@@ -17,6 +17,13 @@ afterEvaluate { project ->
                     name pomInfo.name
                     description pomInfo.description
                     url pomInfo.url
+                    licenses {
+                        license {
+                            name pomInfo.licenseName
+                            url pomInfo.licenseUrl
+                            distribution pomInfo.licenseDistribution
+                        }
+                    }
                 }
             }
         }
