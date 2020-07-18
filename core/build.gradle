@@ -8,22 +8,21 @@ dependencies {
     testImplementation 'junit:junit:4.13'
 }
 
-def pomInfo = new XmlSlurper().parse(new File(projectDir, 'info.pom'));
+def pomInfo = new XmlSlurper().parse(file('info.pom'));
 
-afterEvaluate { project ->
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                pom.project {
-                    name pomInfo.name
-                    description pomInfo.description
-                    url pomInfo.url
-                    licenses {
-                        license {
-                            name pomInfo.licenseName
-                            url pomInfo.licenseUrl
-                            distribution pomInfo.licenseDistribution
-                        }
+publishing {
+    publications {
+        maven(MavenPublication) {
+            from components.java
+            pom {
+                name = "$pomInfo.name"
+                description = "$pomInfo.description"
+                url = "$pomInfo.url"
+                licenses {
+                    license {
+                        name = "$pomInfo.licenseName"
+                        url = "$pomInfo.licenseUrl"
+                        distribution = "$pomInfo.licenseDistribution"
                     }
                 }
             }

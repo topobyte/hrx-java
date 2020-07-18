@@ -15,7 +15,7 @@ subprojects {
     apply plugin: 'java'
     apply plugin: 'io.franzbecker.gradle-lombok'
     apply plugin: 'eclipse'
-    apply plugin: 'maven'
+    apply plugin: 'maven-publish'
 
     repositories {
         maven {
@@ -30,12 +30,7 @@ subprojects {
     sourceCompatibility = 1.8
     targetCompatibility = 1.8
 
-    task sourcesJar(type: Jar, dependsOn: classes) {
-        classifier = 'sources'
-        from sourceSets.main.allSource
-    }
-
-    artifacts {
-        archives sourcesJar
+    java {
+        withSourcesJar()
     }
 }
