@@ -16,15 +16,25 @@
 
 package de.topobyte.util;
 
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 import org.junit.Assert;
 
 import de.topobyte.hrx.HrxFile;
 import de.topobyte.hrx.Lines;
+import de.topobyte.melon.resources.Resources;
 
 public class TestUtil
 {
+
+	public static Reader asReader(String name)
+	{
+		return new InputStreamReader(Resources.stream(name),
+				StandardCharsets.UTF_8);
+	}
 
 	public static Lines lines(String... lines)
 	{

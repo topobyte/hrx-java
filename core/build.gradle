@@ -4,6 +4,7 @@ if (project.hasProperty("topobyte")) {
 }
 
 dependencies {
+    testCompile 'de.topobyte:melon-resources:0.0.1'
     testCompile 'junit:junit:4.13'
 }
 

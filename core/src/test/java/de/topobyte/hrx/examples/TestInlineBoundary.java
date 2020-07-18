@@ -27,7 +27,6 @@ import de.topobyte.hrx.HrxException;
 import de.topobyte.hrx.HrxFile;
 import de.topobyte.hrx.HrxFiles;
 import de.topobyte.hrx.HrxReader;
-import de.topobyte.util.Resources;
 import de.topobyte.util.TestUtil;
 
 public class TestInlineBoundary
@@ -43,7 +42,7 @@ public class TestInlineBoundary
 	@Test
 	public void test() throws IOException, HrxException
 	{
-		try (Reader reader = Resources
+		try (Reader reader = TestUtil
 				.asReader("examples/inline-boundary.hrx")) {
 			HrxReader hrxReader = new HrxReader();
 			List<HrxFile> files = hrxReader.read(reader);

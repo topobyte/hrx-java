@@ -27,7 +27,6 @@ import de.topobyte.hrx.HrxException;
 import de.topobyte.hrx.HrxFile;
 import de.topobyte.hrx.HrxFiles;
 import de.topobyte.hrx.HrxReader;
-import de.topobyte.util.Resources;
 import de.topobyte.util.TestUtil;
 
 public class TestDirectory
@@ -49,7 +48,7 @@ public class TestDirectory
 	@Test
 	public void test() throws IOException, HrxException
 	{
-		try (Reader reader = Resources.asReader("examples/directory.hrx")) {
+		try (Reader reader = TestUtil.asReader("examples/directory.hrx")) {
 			HrxReader hrxReader = new HrxReader();
 			List<HrxFile> files = hrxReader.read(reader);
 			TestUtil.assertEquals(expected, files);
