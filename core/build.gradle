@@ -4,8 +4,8 @@ if (project.hasProperty("topobyte")) {
 }
 
 dependencies {
-    testCompile 'de.topobyte:melon-resources:0.0.1'
-    testCompile 'junit:junit:4.13'
+    testImplementation 'de.topobyte:melon-resources:0.0.1'
+    testImplementation 'junit:junit:4.13'
 }
 
 def pomInfo = new XmlSlurper().parse(new File(projectDir, 'info.pom'));

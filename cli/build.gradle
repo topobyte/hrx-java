@@ -13,7 +13,7 @@ apply plugin: 'de.topobyte.launch-and-install-gradle-plugin'
 startScripts.enabled = false
 
 dependencies {
-    compile project(':hrx')
+    implementation project(':hrx')
 }
 
 task copyJars(type: Copy) {
