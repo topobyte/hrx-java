@@ -80,6 +80,9 @@ public class TestExtract
 			HrxReader hrxReader = new HrxReader();
 			List<HrxFile> files = hrxReader.read(reader);
 			checkExtractedContent(files, dir);
+			// TODO: check the other way around that all files in the expected
+			// directory have been extracted
+			// TODO: check for discovered directories both ways
 		}
 	}
 
