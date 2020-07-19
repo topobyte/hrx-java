@@ -14,7 +14,7 @@ We provide access to the artifacts via our own Maven repository:
 The package is available at these coordinates:
 
 <pre>
-<a href="https://mvn.topobyte.de/de/topobyte/hrx/0.0.1/">de.topobyte:hrx:0.0.1</a>
+<a href="https://mvn.topobyte.de/de/topobyte/hrx/0.1.0/">de.topobyte:hrx:0.1.0</a>
 </pre>
 
 ## Command Line Interface (CLI)
