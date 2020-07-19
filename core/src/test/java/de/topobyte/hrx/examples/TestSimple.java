@@ -49,7 +49,8 @@ public class TestSimple
 				"}", //
 				"ul li {", //
 				"  list-style-type: none;", //
-				"}" //
+				"}", //
+				"" //
 		)));
 	}
 

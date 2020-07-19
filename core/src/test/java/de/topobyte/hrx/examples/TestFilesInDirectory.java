@@ -39,7 +39,8 @@ public class TestFilesInDirectory
 				"files in them." //
 		)));
 		expected.add(HrxFiles.file("path/to/file2",
-				TestUtil.lines("This file is in a deeper directory." //
+				TestUtil.lines("This file is in a deeper directory.", //
+						"" //
 				)));
 	}
 

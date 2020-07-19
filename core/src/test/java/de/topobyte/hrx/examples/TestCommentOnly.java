@@ -35,7 +35,9 @@ public class TestCommentOnly
 	private List<HrxFile> expected = new ArrayList<>();
 	{
 		expected.add(HrxFiles.comment(TestUtil.lines(
-				"A HRX file may consist of only a comment and nothing else.")));
+				"A HRX file may consist of only a comment and nothing else.", //
+				"" //
+		)));
 	}
 
 	@Test

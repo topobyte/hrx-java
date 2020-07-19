@@ -43,6 +43,7 @@ public class TestComments
 				HrxFiles.comment(TestUtil.lines("This is another comment.")));
 		expected.add(HrxFiles.file("file2", TestUtil.lines( //
 				"This is the contents of another file.", //
+				"", //
 				"" //
 		)));
 	}

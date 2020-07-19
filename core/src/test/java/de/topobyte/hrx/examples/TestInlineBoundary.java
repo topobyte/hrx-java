@@ -35,7 +35,8 @@ public class TestInlineBoundary
 	private List<HrxFile> expected = new ArrayList<>();
 	{
 		expected.add(HrxFiles.file("file", TestUtil.lines(
-				"This <===> doesn't count as a boundary because it's not on its own line." //
+				"This <===> doesn't count as a boundary because it's not on its own line.", //
+				"" //
 		)));
 	}
 

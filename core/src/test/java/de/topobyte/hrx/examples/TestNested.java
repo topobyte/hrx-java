@@ -48,7 +48,8 @@ public class TestNested
 				"Inner files can also contain shorter boundaries...", //
 				"", //
 				"<=> nested-file2.hrx", //
-				"...as long as they don't contain the outer file's boundary." //
+				"...as long as they don't contain the outer file's boundary.", //
+				"" //
 		)));
 	}
 
@@ -72,7 +73,8 @@ public class TestNested
 						"" //
 				)));
 		expected2.add(HrxFiles.file("nested-file2.hrx", TestUtil.lines(
-				"...as long as they don't contain the outer file's boundary." //
+				"...as long as they don't contain the outer file's boundary.", //
+				"" //
 		)));
 	}
 

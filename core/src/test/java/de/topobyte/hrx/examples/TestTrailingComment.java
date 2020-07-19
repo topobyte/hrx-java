@@ -36,10 +36,12 @@ public class TestTrailingComment
 	{
 		expected.add(
 				HrxFiles.file("file", TestUtil.lines("The contents of a file.", //
-						""//
+						"" //
 				)));
 		expected.add(HrxFiles.comment(
-				TestUtil.lines("A comment may appear at the end of a file.")));
+				TestUtil.lines("A comment may appear at the end of a file.", //
+						"" //
+				)));
 	}
 
 	@Test

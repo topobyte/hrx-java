@@ -44,7 +44,8 @@ public class TestComplexFilenames
 						"" //
 				)));
 		expected.add(HrxFiles.file("☃", TestUtil.lines( //
-				"Non-ASCII Unicode names are allowed." //
+				"Non-ASCII Unicode names are allowed.", //
+				"" //
 		)));
 	}
 

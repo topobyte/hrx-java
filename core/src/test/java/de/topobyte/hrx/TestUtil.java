@@ -37,8 +37,13 @@ public class TestUtil
 	public static Lines lines(String... lines)
 	{
 		Lines result = new Lines();
-		for (String line : lines) {
-			result.append(new Line(line, LineTerminator.UNIX));
+		int len = lines.length;
+		for (int i = 0; i < len - 1; i++) {
+			result.append(new Line(lines[i], LineTerminator.UNIX));
+		}
+		if (len > 0) {
+			result.append(
+					new Line(lines[lines.length - 1], LineTerminator.EOF));
 		}
 		return result;
 	}
