@@ -16,32 +16,10 @@
 
 package de.topobyte.hrx;
 
-import java.io.IOException;
+public enum LineTerminator {
 
-class LineSupplier
-{
-
-	private Line buffer = null;
-	private LineReader reader;
-
-	public LineSupplier(LineReader reader)
-	{
-		this.reader = reader;
-	}
-
-	public Line next() throws IOException
-	{
-		if (buffer != null) {
-			Line tmp = buffer;
-			buffer = null;
-			return tmp;
-		}
-		return reader.readLine();
-	}
-
-	public void push(Line line)
-	{
-		buffer = line;
-	}
+	UNIX,
+	WINDOWS,
+	EOF
 
 }

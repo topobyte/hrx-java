@@ -16,32 +16,34 @@
 
 package de.topobyte.hrx;
 
-import java.io.IOException;
+import lombok.Getter;
+import lombok.Setter;
 
-class LineSupplier
+class Line
 {
 
-	private Line buffer = null;
-	private LineReader reader;
+	@Getter
+	@Setter
+	private String content;
+	@Getter
+	@Setter
+	private LineTerminator ending;
 
-	public LineSupplier(LineReader reader)
+	public Line(String content, LineTerminator ending)
 	{
-		this.reader = reader;
+		this.content = content;
+		this.ending = ending;
 	}
 
-	public Line next() throws IOException
+	public boolean isEOF()
 	{
-		if (buffer != null) {
-			Line tmp = buffer;
-			buffer = null;
-			return tmp;
-		}
-		return reader.readLine();
+		return ending == LineTerminator.EOF;
 	}
 
-	public void push(Line line)
+	@Override
+	public String toString()
 	{
-		buffer = line;
+		return content;
 	}
 
 }

@@ -27,7 +27,7 @@ import de.topobyte.hrx.HrxException;
 import de.topobyte.hrx.HrxFile;
 import de.topobyte.hrx.HrxFiles;
 import de.topobyte.hrx.HrxReader;
-import de.topobyte.util.TestUtil;
+import de.topobyte.hrx.TestUtil;
 
 public class TestComplexFilenames
 {

@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package de.topobyte.util;
+package de.topobyte.hrx;
 
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -23,8 +23,6 @@ import java.util.List;
 
 import org.junit.Assert;
 
-import de.topobyte.hrx.HrxFile;
-import de.topobyte.hrx.Lines;
 import de.topobyte.melon.resources.Resources;
 
 public class TestUtil
@@ -40,7 +38,7 @@ public class TestUtil
 	{
 		Lines result = new Lines();
 		for (String line : lines) {
-			result.append(line);
+			result.append(new Line(line, LineTerminator.UNIX));
 		}
 		return result;
 	}

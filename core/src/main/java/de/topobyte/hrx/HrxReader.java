@@ -31,14 +31,13 @@ public class HrxReader
 	public List<HrxFile> read(Reader reader) throws IOException, HrxException
 	{
 		BufferedReader br = new BufferedReader(reader);
-		return read(br);
+		return read(new LineReader(br));
 	}
 
-	public List<HrxFile> read(BufferedReader br)
-			throws IOException, HrxException
+	public List<HrxFile> read(LineReader br) throws IOException, HrxException
 	{
 		List<HrxFile> results = new ArrayList<>();
-		String line = br.readLine();
+		Line line = br.readLine();
 		boundaryLen = readFirstBoundary(line);
 		boundary = boundary();
 
@@ -70,8 +69,8 @@ public class HrxReader
 	private HrxFile readEntry(LineSupplier supplier)
 			throws IOException, HrxException
 	{
-		String line = supplier.next();
-		if (line == null) {
+		Line line = supplier.next();
+		if (line.isEOF()) {
 			return null;
 		}
 		HrxEntryType type = readType(line);
@@ -94,23 +93,32 @@ public class HrxReader
 
 	private Lines readLines(LineSupplier supplier) throws IOException
 	{
+		boolean foundNext = false;
 		Lines lines = new Lines();
 		while (true) {
-			String line = supplier.next();
-			if (line == null) {
+			Line line = supplier.next();
+			if (line.isEOF()) {
+				lines.append(line);
 				break;
 			}
-			if (line.startsWith(boundary)) {
+			if (line.getContent().startsWith(boundary)) {
 				supplier.push(line);
+				foundNext = true;
 				break;
 			}
 			lines.append(line);
 		}
+		if (foundNext) {
+			// if there is another entry in the archive, consume the last
+			// newline character
+			lines.setLastToEof();
+		}
 		return lines;
 	}
 
-	private int readFirstBoundary(String line) throws HrxException
+	private int readFirstBoundary(Line l) throws HrxException
 	{
+		String line = l.getContent();
 		int len = line.length();
 		if (len < 3) {
 			throw new HrxException("boundary too short");
@@ -146,8 +154,9 @@ public class HrxReader
 		return 0;
 	}
 
-	private HrxEntryType readType(String line) throws HrxException
+	private HrxEntryType readType(Line l) throws HrxException
 	{
+		String line = l.getContent();
 		int len = line.length();
 		if (len == boundaryLen + 2) {
 			return HrxEntryType.COMMENT;
@@ -177,14 +186,14 @@ public class HrxReader
 		}
 	}
 
-	private String readFilename(String line)
+	private String readFilename(Line line)
 	{
-		return line.substring(boundaryLen + 3);
+		return line.getContent().substring(boundaryLen + 3);
 	}
 
-	private String readDirname(String line)
+	private String readDirname(Line line)
 	{
-		return line.substring(boundaryLen + 3);
+		return line.getContent().substring(boundaryLen + 3);
 	}
 
 }

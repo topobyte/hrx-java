@@ -25,9 +25,9 @@ public class Lines
 {
 
 	@Getter
-	private List<String> lines = new ArrayList<>();
+	private List<Line> lines = new ArrayList<>();
 
-	public void append(String line)
+	public void append(Line line)
 	{
 		lines.add(line);
 	}
@@ -40,11 +40,38 @@ public class Lines
 		}
 		StringBuffer buffer = new StringBuffer();
 
-		for (int i = 0; i < lines.size(); i++) {
-			buffer.append(lines.get(i));
-			buffer.append("\n");
+		int n = lines.size();
+		for (int i = 0; i < n; i++) {
+			Line line = lines.get(i);
+			if (line.isEOF() && line.getContent() == null) {
+				continue;
+			}
+			buffer.append(line.getContent());
+			buffer.append(ending(line.getEnding()));
 		}
 		return buffer.toString();
+	}
+
+	private String ending(LineTerminator ending)
+	{
+		switch (ending) {
+		case EOF:
+			return "";
+		default:
+		case UNIX:
+			return "\n";
+		case WINDOWS:
+			return "\r\n";
+		}
+	}
+
+	public void setLastToEof()
+	{
+		if (lines.isEmpty()) {
+			return;
+		}
+		Line line = lines.get(lines.size() - 1);
+		line.setEnding(LineTerminator.EOF);
 	}
 
 }
