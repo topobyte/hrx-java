@@ -16,7 +16,7 @@
 
 package de.topobyte.hrx;
 
-enum HrxEntryType {
+public enum HrxEntryType {
 	FILE,
 	DIRECTORY,
 	COMMENT
