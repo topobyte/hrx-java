@@ -21,7 +21,7 @@ import java.util.List;
 
 import lombok.Getter;
 
-public class Lines
+class Lines
 {
 
 	@Getter

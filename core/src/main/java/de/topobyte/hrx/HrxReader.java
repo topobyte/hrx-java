@@ -34,7 +34,13 @@ public class HrxReader
 		return read(new LineReader(br));
 	}
 
-	public List<HrxFile> read(LineReader br) throws IOException, HrxException
+	public List<HrxFile> read(BufferedReader reader)
+			throws IOException, HrxException
+	{
+		return read(new LineReader(reader));
+	}
+
+	List<HrxFile> read(LineReader br) throws IOException, HrxException
 	{
 		List<HrxFile> results = new ArrayList<>();
 		Line line = br.readLine();

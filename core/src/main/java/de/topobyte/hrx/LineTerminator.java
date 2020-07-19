@@ -16,7 +16,7 @@
 
 package de.topobyte.hrx;
 
-public enum LineTerminator {
+enum LineTerminator {
 
 	UNIX,
 	WINDOWS,
