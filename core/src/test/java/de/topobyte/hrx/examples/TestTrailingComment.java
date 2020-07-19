@@ -34,8 +34,8 @@ public class TestTrailingComment
 
 	private List<HrxFile> expected = new ArrayList<>();
 	{
-		expected.add(HrxFiles.file("file.hrx",
-				TestUtil.lines("The contents of a file.", //
+		expected.add(
+				HrxFiles.file("file", TestUtil.lines("The contents of a file.", //
 						""//
 				)));
 		expected.add(HrxFiles.comment(
