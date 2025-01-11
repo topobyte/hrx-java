@@ -1,9 +1,9 @@
 plugins {
-    id 'io.franzbecker.gradle-lombok' version '4.0.0' apply false
+    id("io.freefair.lombok") version "8.0.1" apply false
 }
 
 wrapper {
-    gradleVersion = '6.5.1'
+    gradleVersion = '7.6.2'
 }
 
 allprojects {
@@ -13,7 +13,7 @@ allprojects {
 
 subprojects {
     apply plugin: 'java'
-    apply plugin: 'io.franzbecker.gradle-lombok'
+    apply plugin: 'io.freefair.lombok'
     apply plugin: 'eclipse'
     apply plugin: 'maven-publish'
 
